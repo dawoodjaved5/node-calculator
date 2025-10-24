@@ -1,4 +1,4 @@
-const { add, subtract, multiply, divide } = require('./calculator');
+const { add, subtract, multiply, divide, modulus } = require('./calculator');
 
 describe('Calculator', () => {
   describe('add', () => {
@@ -94,6 +94,44 @@ describe('Calculator', () => {
 
     test('should handle division resulting in decimal', () => {
       expect(divide(7, 3)).toBeCloseTo(2.333333);
+    });
+  });
+
+  describe('modulus', () => {
+    test('should return remainder of two positive numbers', () => {
+      expect(modulus(10, 3)).toBe(1);
+    });
+
+    test('should return remainder of two negative numbers', () => {
+      expect(modulus(-10, -3)).toBe(-1);
+    });
+
+    test('should return remainder of positive and negative numbers', () => {
+      expect(modulus(10, -3)).toBe(1);
+    });
+
+    test('should return remainder of negative and positive numbers', () => {
+      expect(modulus(-10, 3)).toBe(-1);
+    });
+
+    test('should return zero when numbers divide evenly', () => {
+      expect(modulus(12, 3)).toBe(0);
+    });
+
+    test('should handle decimal numbers', () => {
+      expect(modulus(7.5, 2.5)).toBeCloseTo(0);
+    });
+
+    test('should throw error when modulus by zero', () => {
+      expect(() => modulus(10, 0)).toThrow('Modulus by zero is not allowed');
+    });
+
+    test('should throw error when negative number modulus by zero', () => {
+      expect(() => modulus(-10, 0)).toThrow('Modulus by zero is not allowed');
+    });
+
+    test('should handle large numbers', () => {
+      expect(modulus(1000000, 7)).toBe(1);
     });
   });
 });

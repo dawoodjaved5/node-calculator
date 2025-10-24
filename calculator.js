@@ -46,9 +46,24 @@ function divide(a, b) {
   return a / b;
 }
 
+/**
+ * Returns the remainder of division (modulus)
+ * @param {number} a - Dividend
+ * @param {number} b - Divisor
+ * @returns {number} The remainder of a % b
+ * @throws {Error} If b is zero (modulus by zero)
+ */
+function modulus(a, b) {
+  if (b === 0) {
+    throw new Error('Modulus by zero is not allowed');
+  }
+  return a % b;
+}
+
 module.exports = {
   add,
   subtract,
   multiply,
-  divide
+  divide,
+  modulus
 };
